@@ -25,7 +25,9 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: curl target line
-      run: curl http://www.pref.kagoshima.jp/ae06/kenko-fukushi/kenko-iryo/kansen/kansensho/coronavirus.html | grep -15  感染症検査実施件数 > covid-19/log.txt
+      run: |
+          mkdir -p covid-19
+          curl http://www.pref.kagoshima.jp/ae06/kenko-fukushi/kenko-iryo/kansen/kansensho/coronavirus.html | grep -15  感染症検査実施件数 > covid-19/log.txt
 
     - uses: actions/upload-artifact@v1
       with:
