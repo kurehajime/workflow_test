@@ -7,15 +7,11 @@ jobs:
   productionPromotion:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: development
-      - name: Reset promotion branch
-        run: |
-          git fetch origin development:development
-          git reset --hard development
-      - name: Create Pull Request
+      - name: Create a pull request
         uses: peter-evans/create-pull-request@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: staging
+          base: development
+          title: "development -> staging"
+          body: "development -> staging"
