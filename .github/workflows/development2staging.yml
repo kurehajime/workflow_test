@@ -19,5 +19,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "staging"
         source_branch: "development"
-        pr_title: "${{ steps.issue.outputs.number }} development to staging"
+        pr_title: "development to staging"
         pr_body: "* close #${{ steps.issue.outputs.number }}"
