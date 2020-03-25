@@ -1,0 +1,21 @@
+name: Create pull request from development to staging
+on:
+  push:
+    branches:
+      - development
+jobs:
+  productionPromotion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: production
+      - name: Reset promotion branch
+        run: |
+          git fetch origin development
+          git reset --hard development
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: staging
