@@ -12,7 +12,7 @@ jobs:
           ref: production
       - name: Reset promotion branch
         run: |
-          git fetch origin development
+          git fetch origin development:development
           git reset --hard development
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v2
