@@ -7,6 +7,10 @@ jobs:
   productionPromotion:
     runs-on: ubuntu-latest
     steps:
+    - name : GITHUB CONTEXT
+      env: 
+        GITHUB_CONTEXT: ${{ toJson(github) }} 
+      run: echo "$GITHUB_CONTEXT" 
     - uses: maxkomarychev/oction-create-issue@v0.7.1
       id: issue
       with:
@@ -19,4 +23,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "staging"
         source_branch: "development"
+        pr_title: "development to staging"
         pr_body: "* close #${{ steps.issue.outputs.number }}"
