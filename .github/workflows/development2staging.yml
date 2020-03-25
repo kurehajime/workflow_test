@@ -7,11 +7,10 @@ jobs:
   productionPromotion:
     runs-on: ubuntu-latest
     steps:
-      - name: Create a pull request
-        uses: peter-evans/create-pull-request@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: staging
-          base: development
-          title: "development -> staging"
-          body: "development -> staging"
+    - uses: actions/checkout@v1
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_branch: "staging"
+        source_branch: "development"
