@@ -7,6 +7,11 @@ jobs:
   productionPromotion:
     runs-on: ubuntu-latest
     steps:
+    - uses: maxkomarychev/oction-create-issue@v0.7.1
+      id: issue
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "development to staging"
     - uses: actions/checkout@v1
     - name: pull-request
       uses: repo-sync/pull-request@v2
@@ -14,3 +19,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "staging"
         source_branch: "development"
+        pr_title: "${{ steps.issue.outputs.number }} development to staging"
+        pr_body: "* close #${{ steps.issue.outputs.number }}"
